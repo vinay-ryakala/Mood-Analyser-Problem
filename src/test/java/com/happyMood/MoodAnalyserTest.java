@@ -8,20 +8,32 @@ public class MoodAnalyserTest {
     @Test
     public void whenSadMoodReturnSad()
     {
-        MoodAnalyser moodAnalyser = new MoodAnalyser();
-        String mood = moodAnalyser.analyseMood("I am in sad mood");
-        Assert.assertEquals("SAD", mood);
+        try
+        {
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            String mood = moodAnalyser.analyseMood("I am in sad mood");
+            Assert.assertEquals("SAD", mood);
+        }
+        catch(MoodAnalyserException e)
+        {
+            e.printStackTrace();
+        }
     }
-
     @Test
     public void whenNotSadReturnHappy()
     {
-        MoodAnalyser moodAnalyser = new MoodAnalyser();
-        String mood = moodAnalyser.analyseMood("I am in Happy mood");
-        Assert.assertEquals("HAPPY", mood);
+        try {
+            MoodAnalyser moodAnalyser = new MoodAnalyser();
+            String mood = moodAnalyser.analyseMood("I am in Happy mood");
+            Assert.assertEquals("HAPPY", mood);
+        }
+        catch(MoodAnalyserException e)
+        {
+            e.printStackTrace();
+        }
     }
     @Test
-    public void whenNullCatchException()
+    public void whenNullCatchCustomException()
     {
         try
         {
@@ -29,7 +41,7 @@ public class MoodAnalyserTest {
             String mood = moodAnalyser.analyseMood(null);
             Assert.assertEquals("HAPPY", mood);
         }
-        catch(NullPointerException e)
+        catch(MoodAnalyserException e)
         {
             e.printStackTrace();
         }
